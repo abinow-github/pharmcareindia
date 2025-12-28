@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - PHARMCARE</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. GLOBAL VARIABLES & RESET (Same as Home) --- */
+        :root {
+            --teal-primary: #009B94;
+            --teal-dark: #007a75;
+            --lime-accent: #8BC53F;
+            --lime-light: #e3f0cf;
+            --dark: #0f172a;
+            --text-gray: #475569;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --brand-gradient: linear-gradient(135deg, var(--teal-primary) 0%, var(--lime-accent) 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-gray); background-color: var(--white); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--dark); font-weight: 700; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- 2. UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 100px 0; position: relative; }
+        .text-gradient {
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 20px rgba(0, 155, 148, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-primary { background: var(--brand-gradient); color: var(--white); border: none; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 155, 148, 0.3); }
+
+        /* --- 3. NAVIGATION (Consistent) --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000; padding: 15px 0;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 50px; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { color: var(--dark); font-weight: 500; font-size: 0.95rem; position: relative; }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
+            background: var(--teal-primary); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--teal-primary); }
+        .hamburger { display: none; font-size: 1.5rem; color: var(--dark); cursor: pointer; }
+
+        /* --- 4. PAGE HEADER (Unique to Services) --- */
+        .page-header {
+            background: linear-gradient(135deg, #0f2e2c 0%, #004d4a 100%);
+            padding: 180px 0 100px; /* Top padding accounts for fixed header */
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header h1 { color: var(--white); font-size: 3rem; margin-bottom: 15px; }
+        .page-header p { font-size: 1.1rem; color: #cbd5e1; max-width: 600px; margin: 0 auto; }
+        
+        /* Decorative circle in background */
+        .header-circle {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: var(--brand-gradient);
+            opacity: 0.1;
+            border-radius: 50%;
+            top: -100px; right: -100px;
+            filter: blur(60px);
+        }
+
+        /* --- 5. SERVICES GRID --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 155, 148, 0.15);
+        }
+
+        /* Image Box inside Card */
+        .service-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .service-card:hover .service-img {
+            transform: scale(1.05);
+        }
+
+        .service-body {
+            padding: 30px;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--lime-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal-primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            margin-top: -60px; /* Pull icon up over image */
+            position: relative;
+            border: 4px solid var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .service-body h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--dark); }
+        .service-body p { font-size: 0.95rem; color: var(--text-gray); margin-bottom: 20px; }
+        
+        .read-more {
+            color: var(--teal-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .read-more:hover { gap: 10px; } /* Arrow slide effect */
+
+        /* --- 6. PROCESS SECTION --- */
+        .process-section { background-color: var(--light-bg); }
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        /* Connecting Line */
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e2e8f0;
+            z-index: 0;
+            display: none; /* Hidden on mobile, shown on desktop via media query */
+        }
+
+        .step-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            min-width: 200px;
+        }
+        
+        .step-number {
+            width: 80px; height: 80px;
+            background: var(--white);
+            border: 2px solid var(--teal-primary);
+            color: var(--teal-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            transition: 0.3s;
+        }
+        
+        .step-item:hover .step-number {
+            background: var(--brand-gradient);
+            color: var(--white);
+            border-color: transparent;
+        }
+
+        .step-item h4 { margin-bottom: 10px; font-size: 1.2rem; }
+        .step-item p { font-size: 0.9rem; padding: 0 10px; }
+
+        /* --- 7. CTA SECTION --- */
+        .cta-section {
+            background: var(--brand-gradient);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--white);
+        }
+        .cta-section h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 20px; }
+        .cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 1.1rem; }
+        .btn-white { background: var(--white); color: var(--teal-primary); }
+        .btn-white:hover { background: #f1f5f9; transform: translateY(-3px); }
+
+        /* --- 8. FLOATING BUTTONS (Same as Home) --- */
+        .floating-actions {
+            position: fixed; bottom: 30px; right: 30px;
+            display: flex; flex-direction: column; gap: 15px; z-index: 9999;
+        }
+        .fab-btn {
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .fab-whatsapp { background-color: #25D366; }
+        .fab-call { background-color: var(--teal-primary); }
+        .fab-btn:hover { transform: scale(1.1); color: #fff; }
+
+        /* --- 9. FOOTER (Same as Home) --- */
+        footer { background: var(--dark); color: var(--white); padding: 80px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
+        .footer-brand img { height: 40px; filter: brightness(0) invert(1); margin-bottom: 20px; }
+        .footer-brand p { color: #94a3b8; max-width: 300px; font-size: 0.95rem; }
+        .footer-col h4 { color: var(--white); margin-bottom: 25px; font-size: 1.1rem; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #94a3b8; font-size: 0.9rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--lime-accent); padding-left: 5px; }
+        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
+        .social-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; transition: 0.3s; }
+        .social-icon:hover { background: var(--teal-primary); transform: translateY(-3px); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center; color: #64748b; font-size: 0.9rem; }
+        .footer-bottom a { color: var(--lime-accent); }
+
+        /* --- RESPONSIVE --- */
+        @media (min-width: 992px) {
+            .process-steps::before { display: block; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); gap: 20px; text-align: center; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <img src="image_0.png" alt="Pharmcare Logo" class="logo">
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services" class="active">Services</a></li>
+                <li><a href="blog">Blog</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+            
+            <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
+        </div>
+    </header>
+
+    <div class="floating-actions">
+        <a href="tel:+918129503903" class="fab-btn fab-call">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="https://wa.me/918129503903" target="_blank" class="fab-btn fab-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <section class="page-header">
+        <div class="header-circle"></div>
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive pharmaceutical stock management and logistics solutions tailored for the modern healthcare ecosystem.</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Warehousing" class="service-img">
+                    <div class="service-body">
+                        <div class="service-icon"><i class="fas fa-warehouse"></i></div>
+                        <h3>Warehousing & Storage</h3>
+                        <p>State-of-the-art facilities compliant with global GDP standards. We offer secure, climate-controlled storage for sensitive pharmaceutical products.</p>
+                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+              
+
+               
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Inventory" class="service-img">
+                    <div class="service-body">
+                        <div class="service-icon"><i class="fas fa-clipboard-list"></i></div>
+                        <h3>Inventory Management</h3>
+                        <p>Advanced digital tools for real-time stock tracking, expiration monitoring, and automated restocking to prevent shortages.</p>
+                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Compliance" class="service-img">
+                    <div class="service-body">
+                        <div class="service-icon"><i class="fas fa-file-contract"></i></div>
+                        <h3>Regulatory Compliance</h3>
+                        <p>We handle the complexities of documentation and local regulations, ensuring every shipment meets legal and safety requirements.</p>
+                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Institutional Supply" class="service-img">
+                    <div class="service-body">
+                        <div class="service-icon"><i class="fas fa-hospital"></i></div>
+                        <h3>Hospital Supply</h3>
+                        <p>Dedicated B2B supply channels for large institutions. We ensure hospitals never run out of critical life-saving stocks.</p>
+                        <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Optimize Your Supply Chain?</h2>
+            <p>Partner with PHARMCARE for reliable, efficient, and compliant pharmaceutical logistics.</p>
+            <a href="contact" class="btn btn-white">Contact Us Today</a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="image_0.png" alt="Pharmcare Logo">
+                    <p>Your strategic partner in pharmaceutical stocks and logistics management.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="services">Our Services</a></li>
+                        <li><a href="blog">Blog & News</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Get in Touch</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+918129503903"><i class="fas fa-phone-alt me-2"></i> +91 81295 03903</a></li>
+                        <li><a href="https://pharmcareindia.com"><i class="fas fa-globe me-2"></i> pharmcareindia.com</a></li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 <a href="https://pharmcareindia.com">pharmcareindia.com</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
